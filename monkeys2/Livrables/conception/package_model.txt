@@ -1,0 +1,201 @@
+@startuml
+
+
+Class GameMaster <<singleton>>{
+- GameMaster : INSTANCE
+- boolean : isRunning
+
++ GameMaster : getInstance()
++ void : initGame()
++ void : endGame()
+}
+
+Class Island{
++ Pirate : getPirateByID(int id)
+}
+
+Class Map{
+- int : sizeX
+- int : sizeY
++ Cell : getCell(Cell cell,EDirection dir)
++ Cell : getCell(int x,int y)
++ void : createMap(String organisation)
++ Cell : getRandomEmptyItemCell()
++ Cell : getRandomEmptyCharCell()
++ EDirection : getDirectionFromCells2(Cell cell1, Cell cell2)
+}
+
+Class MonkeyGroup{
+- int : killToUpgrade
+- int : killToDowngrade
+- int : speed
++ void : createErraticMonkeys(int nbr)
++ void : createHunterMonkeys(int nbr)
++ void : run()
+}
+
+Class Cell{
+- int : coordX
+- int : coordY
+}
+
+Class ObservableElement{
++ {abstract} void : addOberver(Observer o)
++ {abstract} void : removeOberver(Observer o)
++ {abstract} void : notifyObservers()
++ {abstract} void : notifyObservers(int x, int y)
+}
+
+Class Element{
+- int : posX
+- int : posY
+- Cell : cell
+
+}
+
+abstract Class Observer{
++ {abstract} void : update()
++ {abstract} void : update(int x, int y)
++ {abstract} void : update(Cell cell)
+}
+
+class ObserverMonkey{
+- Monkey : monkey
+}
+
+class ObserverPirate{
+- Pirate pirate
+}
+
+Class RhumGroup{
++ void : createRhums(int nbr, int energy, int spawnTime)
+}
+
+
+
+Class Monkey {
+- int : killCount
+- int : killToUpgrade
+- int : kilToDowngrade
++ void : askMove()
+}
+
+Class Pirate{
+- int : id
+- int : energy
++ void : killPirate()
++ void : drinkRhum(int energy)
+}
+
+Class Rhum{
+- int : energy
+- int : spawnTime
++ void : drinkRhum
++ void : spawnRhum
+}
+
+Class Item{
+- boolean : visible
+}
+
+Class Character{
++ void : move(int x, int y)
++ void : move (EDirection direction)
++ {abstract} boolean : canAccess(int x, int y)
++ {abstract} boolean : canAccess(Cell cell)
+}
+
+Class ObserverRhum{
+- Rhum : rhum
+}
+
+abstract Class StrategyDeplacement{
++ EDirection : generateDirection
+}
+
+Class StrategyErratic{
+
+}
+
+Class StrategyHunter{
+- Astar : astar
+- Island : island
+- Map : map
++ void : generateBlock()
++ List<Node> : findPath(int x, int y)
++ List<Node> : findBestPathToCells(ArrayList<Cell> cells)
++ Cell findTargetCellToClosestPirate()
+}
+
+Class Treasure{
+- Treasure : INSTANCE
++ Treasure : getInstance()
++ Treasure : getInstance(int x, int y)
+}
+
+'/////////////////
+
+Enum EMonkeyType{
+ERRATIC
+HUNTER
+}
+
+Enum EGroundType{
+WATER
+GROUND
+}
+
+Enum EPirateState{
+ALIVE
+DEAD
+}
+
+Enum EDirection{
+LEFT
+RIGHT
+UP
+DOWN
+}
+
+
+
+'////////////////////////
+
+GameMaster "1"--"1" Island
+Island "1"--"1"Map
+Island "1"--"*"Pirate
+Island "1" -- "1" MonkeyGroup
+Island "1" -- "1" RhumGroup
+Map"1"--"*"Cell
+Cell"1"--"0..1" Character
+Cell"1"--"0..1" Item
+
+Element <|-up- Item
+Element <|- Character
+Element "1"--"*" Observer
+
+Item <|- Treasure
+Item <|- Rhum
+
+Character <|- Monkey
+Character <|- Pirate
+
+MonkeyGroup "1"--"*" Monkey
+RhumGroup "1" -- "*" Rhum
+
+ObservableElement <|- Element
+
+Observer<|-ObserverMonkey
+Observer<|-ObserverPirate
+Observer<|-ObserverRhum
+
+Cell"*"--"1"EGroundType
+Monkey "*"--"1"EMonkeyType
+Monkey "*"--"1"StrategyDeplacement
+
+Pirate"*"--"1"EPirateState
+
+StrategyDeplacement <|- StrategyHunter
+StrategyDeplacement <|- StrategyErratic
+
+@enduml

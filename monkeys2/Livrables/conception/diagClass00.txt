@@ -1,0 +1,54 @@
+@startuml
+
+Class GameMaster <<singleton>>{
+- GameMaster : INSTANCE
+- boolean : isRunning
+
++ GameMaster : getInstance()
++ void : initGame()
++ void : endGame()
+}
+
+Class Island{
+- Map : map
+- ArrayList<Pirate> : listPirate
+- MonkeyGroup : monkeyGroup
+- RhumGroup : rhumGroup;
++ Pirate : getPirateByID(int id)
+}
+
+Class Communication{
+
+}
+
+Class Config{
+- String : filePath
+- Properties : properties
++ void : initProperties()
++ void : readConfigFile()
++ void : readMapConfig()
++ void : readMonkeyConfig()
++ void : readRhumConfig()
++ void : readTreasureConfig()
+}
+
+GameMaster "1"--"1" Config
+GameMaster "1"--"1" Island
+GameMaster "1"--"1" Communication
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@enduml

@@ -1,0 +1,16 @@
+{
+		"NbPlayerMax": 5,
+		"PirateNrjMax": 20,
+		"WidthMap": 10,
+		"HeightMap": 10,
+		"MapShape": "0000001110011100111000000",
+		"NbMonkeyErratic": 1,
+		"ErraticSpeed": 6000,
+		"NbMonkeyHunter": 0,
+		"NbRumBottle": 1,
+		"RumRespawn": 3000,
+		"RumValue": 10,
+		"TreasurePosX": 5,
+		"TreasurePosY": 5,
+		"PirateSpeed": 300
+}

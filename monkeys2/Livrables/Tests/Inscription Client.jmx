@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.0 r1840935">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments">test du déplcaement du pirate dans les 4 direction lorsque cela est possible, et test d&apos;un déplacement vers une bouteille de rhum visible et vers le trésor.
+Pour effectuer ce test, une configuration de la partie spécifique est requise, utiliser le fichier de configuration ConfigJMeter.Properties</stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ConfigTestElement guiclass="TCPConfigGui" testclass="ConfigTestElement" testname="Paramètres TCP par défaut" enabled="true">
+        <stringProp name="TCPSampler.server">127.0.0.1</stringProp>
+        <boolProp name="TCPSampler.reUseConnection">true</boolProp>
+        <stringProp name="TCPSampler.port">13579</stringProp>
+        <boolProp name="TCPSampler.nodelay">false</boolProp>
+        <stringProp name="TCPSampler.timeout"></stringProp>
+        <stringProp name="TCPSampler.request"></stringProp>
+        <boolProp name="TCPSampler.closeConnection">false</boolProp>
+        <stringProp name="TCPSampler.ctimeout">500</stringProp>
+      </ConfigTestElement>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="CommandFromServer" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="Id_Pirate" elementType="Argument">
+            <stringProp name="Argument.name">Id_Pirate</stringProp>
+            <stringProp name="Argument.value">/i</stringProp>
+            <stringProp name="Argument.desc">info du pirate : id-posX-posY-energie</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="Refus_Deplacement" elementType="Argument">
+            <stringProp name="Argument.name">Refus_Deplacement</stringProp>
+            <stringProp name="Argument.value">/R</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="Acceptation_Deplacement" elementType="Argument">
+            <stringProp name="Argument.name">Acceptation_Deplacement</stringProp>
+            <stringProp name="Argument.value">/A</stringProp>
+            <stringProp name="Argument.desc">Accepation déplacement : posX-posY-energie</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="Carte" elementType="Argument">
+            <stringProp name="Argument.name">Carte</stringProp>
+            <stringProp name="Argument.value">/C </stringProp>
+            <stringProp name="Argument.desc">Indication de la carte :l h c 11 − ... − c 1l − ... − c h1 − ... − c hl</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="Rhum" elementType="Argument">
+            <stringProp name="Argument.name">Rhum</stringProp>
+            <stringProp name="Argument.value">/B</stringProp>
+            <stringProp name="Argument.desc">Indication des bouteille de rhum :  pos1X-pos1Y-vis1___...___posnX-posnY-visn</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="Tresor" elementType="Argument">
+            <stringProp name="Argument.name">Tresor</stringProp>
+            <stringProp name="Argument.value">/T</stringProp>
+            <stringProp name="Argument.desc">Indication du tresor et de la fin de partie : posX-posY</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="RhumVisible" elementType="Argument">
+            <stringProp name="Argument.name">RhumVisible</stringProp>
+            <stringProp name="Argument.value">/b</stringProp>
+            <stringProp name="Argument.desc">Indication de la visibilité d&apos;une bouteille de Rhum :  id-visibilite</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="Nouvelle_Partie" elementType="Argument">
+            <stringProp name="Argument.name">Nouvelle_Partie</stringProp>
+            <stringProp name="Argument.value">/N</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="CommandFromGuybrush" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="Demande_Inscription" elementType="Argument">
+            <stringProp name="Argument.name">Demande_Inscription</stringProp>
+            <stringProp name="Argument.value">/I</stringProp>
+            <stringProp name="Argument.desc">Demande d’inscription du pirate.</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="Demande_Deplacement_Droite" elementType="Argument">
+            <stringProp name="Argument.name">Demande_Deplacement_Droite</stringProp>
+            <stringProp name="Argument.value">/D 1 0</stringProp>
+            <stringProp name="Argument.desc">Demande de déplacement du pirate dans la direction indiquée.</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="Demande_Deplacement_Gauche" elementType="Argument">
+            <stringProp name="Argument.name">Demande_Deplacement_Gauche</stringProp>
+            <stringProp name="Argument.value">/D -1 0</stringProp>
+            <stringProp name="Argument.desc">Demande de déplacement du pirate dans la direction indiquée.</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="Demande_Deplacement_Haut" elementType="Argument">
+            <stringProp name="Argument.name">Demande_Deplacement_Haut</stringProp>
+            <stringProp name="Argument.value">/D 0 -1</stringProp>
+            <stringProp name="Argument.desc">Demande de déplacement du pirate dans la direction indiquée.</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="Demande_Deplacement_Bas" elementType="Argument">
+            <stringProp name="Argument.name">Demande_Deplacement_Bas</stringProp>
+            <stringProp name="Argument.value">/D 0 1</stringProp>
+            <stringProp name="Argument.desc">Demande de déplacement du pirate dans la direction indiquée.</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="Demande_Deplacement_Diagonal" elementType="Argument">
+            <stringProp name="Argument.name">Demande_Deplacement_Diagonal</stringProp>
+            <stringProp name="Argument.value">/D 1 1</stringProp>
+            <stringProp name="Argument.desc">Demande de déplacement du pirate dans la direction indiquée.</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Pirate 1" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Contrôleur Boucle" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <stringProp name="TestPlan.comments">Client demandant de rejoindre la partie et qui vas ensuite faire une sujite de déplacement afin de tester le comportement du jeu avec une configuration donnée.</stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Contrôleur Simple" enabled="true"/>
+        <hashTree>
+          <ConstantTimer guiclass="ConstantTimerGui" testclass="ConstantTimer" testname="Compteur de temps fixe" enabled="true">
+            <stringProp name="ConstantTimer.delay">500</stringProp>
+          </ConstantTimer>
+          <hashTree/>
+        </hashTree>
+        <TCPSampler guiclass="TCPSamplerGui" testclass="TCPSampler" testname="InscriptionRequest" enabled="true">
+          <stringProp name="TCPSampler.server"></stringProp>
+          <boolProp name="TCPSampler.reUseConnection">true</boolProp>
+          <stringProp name="TCPSampler.port"></stringProp>
+          <boolProp name="TCPSampler.nodelay">false</boolProp>
+          <stringProp name="TCPSampler.timeout"></stringProp>
+          <stringProp name="TCPSampler.request">${Demande_Inscription}</stringProp>
+          <boolProp name="TCPSampler.closeConnection">false</boolProp>
+          <stringProp name="ConfigTestElement.username"></stringProp>
+          <stringProp name="ConfigTestElement.password"></stringProp>
+        </TCPSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="InscriptionAcceptance" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="1277341728">${Carte} 2 2 0-1-0-1-1-1-0-1-0</stringProp>
+              <stringProp name="225141070">${Id_Pirate} 1-1-1-10
+</stringProp>
+              <stringProp name="1948240701">${Rhum} 2-1-true
+</stringProp>
+              <stringProp name="-943380510">${Nouvelle_Partie}
+</stringProp>
+            </collectionProp>
+            <stringProp name="TestPlan.comments">acceptation de l&apos;inscription et envoi des information relatives a la partie</stringProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">8</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <TCPSampler guiclass="TCPSamplerGui" testclass="TCPSampler" testname="Demande mouvement haut" enabled="true">
+          <stringProp name="TestPlan.comments">Demande de déplacement vers le haut</stringProp>
+          <stringProp name="TCPSampler.server"></stringProp>
+          <boolProp name="TCPSampler.reUseConnection">true</boolProp>
+          <stringProp name="TCPSampler.port"></stringProp>
+          <boolProp name="TCPSampler.nodelay">false</boolProp>
+          <stringProp name="TCPSampler.timeout"></stringProp>
+          <stringProp name="TCPSampler.request">${Demande_Deplacement_Haut}</stringProp>
+          <boolProp name="TCPSampler.closeConnection">false</boolProp>
+          <stringProp name="ConfigTestElement.username"></stringProp>
+          <stringProp name="ConfigTestElement.password"></stringProp>
+        </TCPSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Acceptation_Deplacement_Haut" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="2075195970">${Acceptation_Deplacement} 1-0-9</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <TCPSampler guiclass="TCPSamplerGui" testclass="TCPSampler" testname="Demande mouvement bas" enabled="true">
+          <stringProp name="TestPlan.comments">Demande de déplacement vers le haut</stringProp>
+          <stringProp name="TCPSampler.server"></stringProp>
+          <boolProp name="TCPSampler.reUseConnection">true</boolProp>
+          <stringProp name="TCPSampler.port"></stringProp>
+          <boolProp name="TCPSampler.nodelay">false</boolProp>
+          <stringProp name="TCPSampler.timeout"></stringProp>
+          <stringProp name="TCPSampler.request">${Demande_Deplacement_Bas}</stringProp>
+          <boolProp name="TCPSampler.closeConnection">false</boolProp>
+          <stringProp name="ConfigTestElement.username"></stringProp>
+          <stringProp name="ConfigTestElement.password"></stringProp>
+        </TCPSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Acceptation_Deplacement" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="2075196930">${Acceptation_Deplacement} 1-1-8</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <TCPSampler guiclass="TCPSamplerGui" testclass="TCPSampler" testname="Demande mouvement gauche" enabled="true">
+          <stringProp name="TestPlan.comments">Demande de déplacement vers le haut</stringProp>
+          <stringProp name="TCPSampler.server"></stringProp>
+          <boolProp name="TCPSampler.reUseConnection">true</boolProp>
+          <stringProp name="TCPSampler.port"></stringProp>
+          <boolProp name="TCPSampler.nodelay">false</boolProp>
+          <stringProp name="TCPSampler.timeout"></stringProp>
+          <stringProp name="TCPSampler.request">${Demande_Deplacement_Gauche}</stringProp>
+          <boolProp name="TCPSampler.closeConnection">false</boolProp>
+          <stringProp name="ConfigTestElement.username"></stringProp>
+          <stringProp name="ConfigTestElement.password"></stringProp>
+        </TCPSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Acceptation_Deplacement gauche" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="2074273408">${Acceptation_Deplacement} 0-1-7</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <TCPSampler guiclass="TCPSamplerGui" testclass="TCPSampler" testname="Demande mouvement droite" enabled="true">
+          <stringProp name="TestPlan.comments">Demande de déplacement vers le haut</stringProp>
+          <stringProp name="TCPSampler.server"></stringProp>
+          <boolProp name="TCPSampler.reUseConnection">true</boolProp>
+          <stringProp name="TCPSampler.port"></stringProp>
+          <boolProp name="TCPSampler.nodelay">false</boolProp>
+          <stringProp name="TCPSampler.timeout"></stringProp>
+          <stringProp name="TCPSampler.request">${Demande_Deplacement_Droite}</stringProp>
+          <boolProp name="TCPSampler.closeConnection">false</boolProp>
+          <stringProp name="ConfigTestElement.username"></stringProp>
+          <stringProp name="ConfigTestElement.password"></stringProp>
+        </TCPSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Acceptation_Deplacement droite" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="2075196928">${Acceptation_Deplacement} 1-1-6</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <TCPSampler guiclass="TCPSamplerGui" testclass="TCPSampler" testname="Demande mouvement droite (rhum)" enabled="true">
+          <stringProp name="TestPlan.comments">Demande de déplacement vers le haut</stringProp>
+          <stringProp name="TCPSampler.server"></stringProp>
+          <boolProp name="TCPSampler.reUseConnection">true</boolProp>
+          <stringProp name="TCPSampler.port"></stringProp>
+          <boolProp name="TCPSampler.nodelay">false</boolProp>
+          <stringProp name="TCPSampler.timeout"></stringProp>
+          <stringProp name="TCPSampler.request">${Demande_Deplacement_Droite}</stringProp>
+          <boolProp name="TCPSampler.closeConnection">false</boolProp>
+          <stringProp name="ConfigTestElement.username"></stringProp>
+          <stringProp name="ConfigTestElement.password"></stringProp>
+        </TCPSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Acceptation_Deplacement droite" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-64775622">${Acceptation_Deplacement} 2-1-16</stringProp>
+              <stringProp name="1225704168">{Rhum_Visible} 1-false</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <TCPSampler guiclass="TCPSamplerGui" testclass="TCPSampler" testname="Demande mouvement gauche" enabled="true">
+          <stringProp name="TestPlan.comments">Demande de déplacement vers le haut</stringProp>
+          <stringProp name="TCPSampler.server"></stringProp>
+          <boolProp name="TCPSampler.reUseConnection">true</boolProp>
+          <stringProp name="TCPSampler.port"></stringProp>
+          <boolProp name="TCPSampler.nodelay">false</boolProp>
+          <stringProp name="TCPSampler.timeout"></stringProp>
+          <stringProp name="TCPSampler.request">${Demande_Deplacement_Gauche}</stringProp>
+          <boolProp name="TCPSampler.closeConnection">false</boolProp>
+          <stringProp name="ConfigTestElement.username"></stringProp>
+          <stringProp name="ConfigTestElement.password"></stringProp>
+        </TCPSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Acceptation_Deplacement gauche" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-93404774">${Acceptation_Deplacement} 1-1-15</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+        <TCPSampler guiclass="TCPSamplerGui" testclass="TCPSampler" testname="Demande mouvement bas" enabled="true">
+          <stringProp name="TestPlan.comments">Demande de déplacement vers le haut</stringProp>
+          <stringProp name="TCPSampler.server"></stringProp>
+          <boolProp name="TCPSampler.reUseConnection">true</boolProp>
+          <stringProp name="TCPSampler.port"></stringProp>
+          <boolProp name="TCPSampler.nodelay">false</boolProp>
+          <stringProp name="TCPSampler.timeout"></stringProp>
+          <stringProp name="TCPSampler.request">${Demande_Deplacement_Bas}</stringProp>
+          <boolProp name="TCPSampler.closeConnection">false</boolProp>
+          <stringProp name="ConfigTestElement.username"></stringProp>
+          <stringProp name="ConfigTestElement.password"></stringProp>
+        </TCPSampler>
+        <hashTree>
+          <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="Acceptation_Deplacement" enabled="true">
+            <collectionProp name="Asserion.test_strings">
+              <stringProp name="-93374984">${Acceptation_Deplacement} 1-2-14</stringProp>
+              <stringProp name="-1023785747">${Tresor} 1-2</stringProp>
+            </collectionProp>
+            <stringProp name="Assertion.custom_message"></stringProp>
+            <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+            <boolProp name="Assertion.assume_success">false</boolProp>
+            <intProp name="Assertion.test_type">16</intProp>
+          </ResponseAssertion>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
